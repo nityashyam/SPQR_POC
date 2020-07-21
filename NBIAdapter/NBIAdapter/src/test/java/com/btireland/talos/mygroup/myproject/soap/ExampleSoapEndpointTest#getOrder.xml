@@ -1,0 +1,7 @@
+<soapenv:Envelope xmlns:soapenv="http://schemas.xmlsoap.org/soap/envelope/"
+                  xmlns:v1="http://talos.btireland.com/examplews/schemas/v1">
+    <soapenv:Header/>
+    <soapenv:Body>
+        <v1:ORDER_ID>200</v1:ORDER_ID>
+    </soapenv:Body>
+</soapenv:Envelope>

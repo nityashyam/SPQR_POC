@@ -1,0 +1,73 @@
+<?xml version="1.0"?>
+<wsdl:definitions name="Siepox-v1"
+                  xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/"
+                  xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/"
+                  xmlns:xsd="http://www.w3.org/2001/XMLSchema"
+                  xmlns:schema="http://talos.btireland.com/examplews/schemas/v1"
+                  xmlns:cschema="http://talos.btireland.com/ws/schemas/v1"
+                  xmlns:tns="http://talos.btireland.com/examplews/v1"
+                  targetNamespace="http://talos.btireland.com/examplews/v1">
+
+    <wsdl:types>
+        <xsd:schema>
+            <xsd:import namespace="http://talos.btireland.com/examplews/schemas/v1" schemaLocation="xsd/exampleWS-xsd-v1.xsd"/>
+            <xsd:import namespace="http://talos.btireland.com/ws/schemas/v1" schemaLocation="xsd/talosWS-xsd-v1.xsd"/>
+        </xsd:schema>
+    </wsdl:types>
+
+    <wsdl:message name="NotificationRequest">
+        <wsdl:part element="schema:NOTIFICATION" name="notification"/>
+    </wsdl:message>
+
+    <wsdl:message name="OrderRequest">
+        <wsdl:part element="schema:ORDER_ID" name="orderId"/>
+    </wsdl:message>
+
+    <wsdl:message name="OrderResponse">
+        <wsdl:part element="schema:ORDER" name="order"/>
+    </wsdl:message>
+
+    <wsdl:message name="Error">
+        <wsdl:part element="cschema:ERROR_DETAIL" name="Error"/>
+    </wsdl:message>
+
+    <wsdl:portType name="ExampleWS">
+        <wsdl:operation name="accept">
+            <wsdl:input message="tns:NotificationRequest" name="NotificationRequest"/>
+        </wsdl:operation>
+        <wsdl:operation name="getOrder">
+            <wsdl:input message="tns:OrderRequest" name="OrderRequest"/>
+            <wsdl:output message="tns:OrderResponse" name="OrderResponse"/>
+            <wsdl:fault message="tns:Error" name="Error"/>
+        </wsdl:operation>
+    </wsdl:portType>
+
+    <wsdl:binding name="ExampleWSBinding" type="tns:ExampleWS">
+        <soap:binding style="document"
+                      transport="http://schemas.xmlsoap.org/soap/http"/>
+        <wsdl:operation name="accept">
+            <soap:operation soapAction="http://examplews.talos.btireland.com/accept/v1"/>
+            <wsdl:input name="NotificationRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+        </wsdl:operation>
+        <wsdl:operation name="getOrder">
+            <soap:operation soapAction="http://examplews.talos.btireland.com/getorder/v1"/>
+            <wsdl:input name="OrderRequest">
+                <soap:body use="literal"/>
+            </wsdl:input>
+            <wsdl:output name="OrderResponse">
+                <soap:body use="literal"/>
+            </wsdl:output>
+            <wsdl:fault name="Error">
+                <soap:body use="literal"/>
+            </wsdl:fault>
+        </wsdl:operation>
+    </wsdl:binding>
+    <wsdl:service name="ExampleWSService">
+        <wsdl:port binding="tns:ExampleWSBinding" name="ExampleWSPort">
+            <soap:address location="http://examplews.talos.btireland.com/"/>
+        </wsdl:port>
+    </wsdl:service>
+
+</wsdl:definitions>

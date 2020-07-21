@@ -1,0 +1,75 @@
+<xs:schema targetNamespace="http://talos.btireland.com/examplews/schemas/v1"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:schema="http://talos.btireland.com/examplews/schemas/v1"
+           elementFormDefault="qualified">
+    <xs:complexType name="serviceDetails">
+        <xs:sequence>
+            <xs:element name="SERVICE_NAME" type="xs:string"/>
+            <xs:element name="SERVICE_VALUE" type="xs:string"/>
+            <xs:element name="ACTION_FLAG" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="header">
+        <xs:sequence>
+            <xs:element name="DATA_CONTRACT">
+                <xs:simpleType>
+                    <xs:restriction base="xs:string">
+                        <xs:maxLength value="30" />
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="ORIGINATOR_CODE" type="xs:string"/>
+            <xs:element name="TRANSACTION_ID">
+                <xs:simpleType>
+                    <xs:restriction base="xs:integer">
+                        <xs:totalDigits value="3"/>
+                    </xs:restriction>
+                </xs:simpleType>
+            </xs:element>
+            <xs:element name="DATE_TIME_STAMP" type="xs:dateTime"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:complexType name="notificationData">
+        <xs:sequence>
+            <xs:element name="NAME" type="xs:string"/>
+            <xs:element name="CODE" type="xs:string"/>
+            <xs:element name="ORDER_NUMBER" type="xs:string"/>
+            <xs:element name="APPOINTMENT_DATE" type="xs:date" minOccurs="0"/>
+            <xs:element name="CIRCUIT_DETAILS">
+                <xs:complexType>
+                    <xs:sequence>
+                        <xs:element name="CIRCUIT_ID" type="xs:string"/>
+                        <xs:element name="ACTION_FLAG" type="xs:string"/>
+                        <xs:element name="ADDITIONAL_SERVICES">
+                            <xs:complexType>
+                                <xs:sequence>
+                                    <xs:element name="SERVICE_DETAILS" type="schema:serviceDetails" minOccurs="1" maxOccurs="unbounded"/>
+                                </xs:sequence>
+                            </xs:complexType>
+                        </xs:element>
+                    </xs:sequence>
+                </xs:complexType>
+            </xs:element>
+        </xs:sequence>
+    </xs:complexType>
+
+
+    <xs:complexType name="notification">
+        <xs:all>
+            <xs:element name="HEADER" type="schema:header"/>
+            <xs:element name="NOTIFICATION_DATA" type="schema:notificationData"/>
+        </xs:all>
+    </xs:complexType>
+    <xs:element name="NOTIFICATION" type="schema:notification"/>
+
+    <xs:element name="ORDER_ID" type="xs:string"/>
+
+    <xs:complexType name="order">
+        <xs:sequence>
+            <xs:element name="ORDER_NUMBER" type="xs:string"/>
+            <xs:element name="NAME" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ORDER" type="schema:order"/>
+
+</xs:schema>

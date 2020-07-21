@@ -1,0 +1,30 @@
+
+spring:
+  datasource:
+    type: com.zaxxer.hikari.HikariDataSource
+    url: jdbc:h2:mem:mydb;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: user
+    password: pwd
+    hikari:
+      poolName: Hikari
+      auto-commit: false
+      data-source-properties:
+        cachePrepStmts: true
+        prepStmtCacheSize: 250
+        prepStmtCacheSqlLimit: 2048
+        useServerPrepStmts: true
+
+pactbroker:
+  host: "pactbrokerdocker-tools.apps.greenside-dev.dublin.btireland.ie"
+  port: 80
+  scheme: http
+  tags: master
+  enablePending: true
+  providerTags: master
+
+# application:
+application:
+  example:
+    asset:
+      hostname: localhost
+      port: 8089

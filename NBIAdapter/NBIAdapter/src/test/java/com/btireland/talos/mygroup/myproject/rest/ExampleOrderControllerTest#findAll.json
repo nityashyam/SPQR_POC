@@ -1,0 +1,42 @@
+{
+  "_embedded": {
+    "exampleOrderDToes": [
+      {
+        "id": 1,
+        "externalReference": "100",
+        "type": "PFIB",
+        "createdAt": "2020-01-16T10:30:37",
+        "items": [
+          {
+            "id": 1,
+            "productName": "FTTH",
+            "quantity": 1
+          }
+        ]
+      }
+    ]
+  },
+  "_links": {
+    "first": {
+      "href": "http://localhost/api/v1/exampleorders?filters=&page=0&size=1"
+    },
+    "prev": {
+      "href": "http://localhost/api/v1/exampleorders?filters=&page=0&size=1"
+    },
+    "self": {
+      "href": "http://localhost/api/v1/exampleorders?filters=&page=1&size=1"
+    },
+    "next": {
+      "href": "http://localhost/api/v1/exampleorders?filters=&page=2&size=1"
+    },
+    "last": {
+      "href": "http://localhost/api/v1/exampleorders?filters=&page=2&size=1"
+    }
+  },
+  "page": {
+    "size": 1,
+    "totalElements": 3,
+    "totalPages": 3,
+    "number": 1
+  }
+}

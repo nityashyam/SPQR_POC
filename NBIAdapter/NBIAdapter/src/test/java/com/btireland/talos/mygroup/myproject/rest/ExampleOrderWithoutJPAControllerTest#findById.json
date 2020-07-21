@@ -1,0 +1,16 @@
+{
+  "id" : 1,
+  "externalReference" : "100",
+  "type" : "PFIB",
+  "createdAt" : "2020-01-16T10:30:37",
+  "items" : [ {
+    "id" : 1,
+    "productName" : "FTTH",
+    "quantity" : 1
+  } ],
+  "_links" : {
+    "self" : {
+      "href" : "http://localhost/api/v1/exampleorderswithoutjpa/1"
+    }
+  }
+}
