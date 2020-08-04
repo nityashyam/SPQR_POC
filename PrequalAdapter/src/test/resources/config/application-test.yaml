@@ -1,0 +1,16 @@
+
+
+pactbroker:
+  host: "pactbrokerdocker-tools.apps.greenside-dev.dublin.btireland.ie"
+  port: 80
+  scheme: http
+  tags: master
+  enablePending: true
+  providerTags: master
+
+# application:
+application:
+  example:
+    asset:
+      hostname: localhost
+      port: 8089

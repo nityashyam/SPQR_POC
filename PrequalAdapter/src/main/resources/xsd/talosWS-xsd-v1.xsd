@@ -1,0 +1,14 @@
+<xs:schema targetNamespace="http://talos.btireland.com/ws/schemas/v1"
+           xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           xmlns:schema="http://talos.btireland.com/ws/schemas/v1"
+           elementFormDefault="qualified">
+    <!-- schema containing object common to all talos WS like error definition-->
+    <xs:complexType name="errorDetail">
+        <xs:sequence>
+            <xs:element name="CODE" type="xs:string"/>
+            <xs:element name="MESSAGE" type="xs:string" maxOccurs="unbounded"/>
+        </xs:sequence>
+    </xs:complexType>
+    <xs:element name="ERROR_DETAIL" type="schema:errorDetail"/>
+
+</xs:schema>

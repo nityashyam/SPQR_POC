@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://wag.btireland.ie/WAG_WS/" targetNamespace="http://wag.btireland.ie/WAG_WS/" elementFormDefault="qualified">
+
+ <xs:element name="NOTIFICATION">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element type="xs:string" name="HEADER"/>
+        <xs:element name="NOTIFICATION_DATA">
+          <xs:complexType>
+            <xs:sequence>
+              <xs:element name="AVAILABILITY">
+                <xs:complexType>
+                  <xs:sequence>
+                    <xs:element type="xs:string" name="SERVICE_IDENTIFIER"/>
+                    <xs:element name="AVAIL_SERVICES">
+                      <xs:complexType>
+                        <xs:sequence>
+                          <xs:element name="AVAIL_SERVICE" maxOccurs="unbounded" minOccurs="0">
+                            <xs:complexType>
+                              <xs:sequence>
+                                <xs:element type="xs:string" name="SERVICE_CLASS"/>
+                                <xs:element type="xs:string" name="SERVICE_RESULT"/>
+                                <xs:element type="xs:string" name="SERVICE_STATUS"/>
+                                <xs:element name="QUALIFIED_SERVICE" maxOccurs="unbounded" minOccurs="0">
+                                  <xs:complexType>
+                                    <xs:choice maxOccurs="unbounded" minOccurs="0">
+                                      <xs:element type="xs:string" name="SERVICE_CODE"/>
+                                      <xs:element type="xs:string" name="RECOMMENDED"/>
+                                      <xs:element type="xs:string" name="PROFILE_CODE"/>
+                                    </xs:choice>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="SERVICE_ATTRIBUTES">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="ATTRIBUTE" maxOccurs="unbounded" minOccurs="0">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:string" name="NAME"/>
+                                            <xs:element type="xs:string" name="VALUE"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                                <xs:element name="INTERNAL_AVAL">
+                                  <xs:complexType>
+                                    <xs:sequence>
+                                      <xs:element name="EIRCOM">
+                                        <xs:complexType>
+                                          <xs:sequence>
+                                            <xs:element type="xs:string" name="FIBRE"/>
+                                          </xs:sequence>
+                                        </xs:complexType>
+                                      </xs:element>
+                                      <xs:element type="xs:string" name="SIRO"/>
+                                    </xs:sequence>
+                                  </xs:complexType>
+                                </xs:element>
+                              </xs:sequence>
+                            </xs:complexType>
+                          </xs:element>
+                        </xs:sequence>
+                      </xs:complexType>
+                    </xs:element>
+                  </xs:sequence>
+                </xs:complexType>
+              </xs:element>
+            </xs:sequence>
+          </xs:complexType>
+        </xs:element>
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+</xs:schema>

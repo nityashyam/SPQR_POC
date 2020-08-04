@@ -1,0 +1,145 @@
+# ===================================================================
+# Spring Boot configuration.
+#
+# This configuration will be overridden by the Spring profile you use,
+# for example application-dev.yml if you use the "dev" profile.
+#
+# ===================================================================
+
+# ===================================================================
+# Standard Spring Boot properties.
+# Full reference is available at:
+# http://docs.spring.io/spring-boot/docs/current/reference/html/common-application-properties.html
+# ===================================================================
+
+feign:
+  hystrix:
+    enabled: false
+  client:
+    config:
+      default:
+        connectTimeout: 10000
+        readTimeout: 10000
+
+# TODO secure actuator endpoints
+management:
+  endpoints:
+    web:
+      exposure:
+        include: ['configprops', 'env', 'health', 'info', 'logfile', 'loggers', 'prometheus', 'threaddump', 'flyway' ]
+  endpoint:
+    health:
+      show-details: always
+  info:
+    git:
+      mode: full
+  health:
+    mail:
+      enabled: false # When using the MailService, configure an SMTP server and set this to true
+  metrics:
+    export:
+      # Prometheus is the default metrics backend
+      prometheus:
+        enabled: true
+        step: 1m
+    enable:
+      http: true
+      jvm: true
+      logback: true
+      process: true
+      system: true
+    distribution:
+      percentiles-histogram:
+        all: true
+      percentiles:
+        all: 0, 0.5, 0.75, 0.95, 0.99, 1.0
+    tags:
+      application: ${spring.application.name}
+    web:
+      server:
+        request:
+          autotime:
+            enabled: true
+
+spring:
+  application:
+    name: MyApplication
+  profiles:
+    active: local
+  jmx:
+    enabled: false
+  mail:
+    host: localhost
+    port: 25
+    username:
+    password:
+  messages:
+    basename: i18n/messages
+  main:
+    allow-bean-definition-overriding: true
+  task:
+    execution:
+      thread-name-prefix: myapplication-task-
+      pool:
+        core-size: 2
+        max-size: 50
+        queue-capacity: 10000
+    scheduling:
+      thread-name-prefix: myapplication-scheduling-
+      pool:
+        size: 2
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: exchange.sipmessages
+          content-type: application/xml
+          group: sipMessageConsumers
+          consumer:
+            max-attempts: 2
+            back-off-initial-interval: 10000
+      rabbit:
+        bindings:
+          input:
+            consumer:
+              auto-bind-dlq: true
+              republish-to-dlq: true
+  lifecycle:
+    timeout-per-shutdown-phase: 30s
+
+server:
+  shutdown: graceful
+  port: 8080
+  servlet:
+    context-path: /
+    session:
+      cookie:
+        http-only: true
+
+# Properties to be exposed on the /info management endpoint
+info:
+  # Comma separated list of profiles that will trigger the ribbon to show
+  display-ribbon-on-profiles: 'dev'
+
+springdoc:
+  packagesToScan: com.btireland.talos.prequaladapter.rest
+  api-version: 1.0
+  api-docs:
+    enabled: true
+  swagger-ui:
+    enabled: true
+
+# ===================================================================
+# Application specific properties
+# Add your own application properties here, see the ApplicationProperties class
+# to have type-safe configuration
+# ===================================================================
+
+# application:
+application:
+  example:
+    asset:
+      url: ${application.example.asset.protocol}://${application.example.asset.hostname}:${application.example.asset.port}
+      protocol: http
+      hostname: localhost
+      port: 8080
