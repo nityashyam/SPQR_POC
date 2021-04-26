@@ -38,7 +38,7 @@
 
         <!-- Dependencies versions -->
         <spring-cloud.version>Hoxton.SR1</spring-cloud.version>
-        <commons-io.version>2.6</commons-io.version>
+        <commons-io.version>2.7</commons-io.version>
         <springdoc-openapi.version>1.2.30</springdoc-openapi.version>
         <wiremock.version>2.25.1</wiremock.version>
         <spring-admin-client.version>2.2.2</spring-admin-client.version>
